@@ -6,6 +6,7 @@ class User {
 
 		$username = "Admin";
 		$password = "Password";
+		$helpText = "";
 
 		//vid en lyckad inloggning	
 		if ($inputName == $username && $inputPsw == $password) {		
@@ -20,17 +21,24 @@ class User {
 		//TODO: fixa $helptext
 		else {		
 			if(empty($inputName) ) {
-			$helpText= "<p>Användarnamn saknas</p><br/>";
+				//$helpText= "<p>Användarnamn saknas</p><br/>";
+				echo "<p>Användarnamn saknas</p><br/>";
 			}
 
 			else if(empty($inputPsw) ) {
-				$helpText= "<p>Lösenord saknas</p><br/>";
+				//$helpText= "<p>Lösenord saknas</p><br/>";
+				echo "<p>Lösenord saknas</p><br/>";
 			}
 
 			else {
-				$helpText= "<p>Felaktigt användarnamn och/eller lösenord</p><br/>";
+				//$helpText= "<p>Felaktigt användarnamn och/eller lösenord</p><br/>";
+				echo "<p>Felaktigt användarnamn och/eller lösenord</p><br/>";
 			}
 		}
+	}
+
+	public function verifiedUser() {
+		
 	}
 
 	

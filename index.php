@@ -1,8 +1,21 @@
 <?php 
 session_start();
 require_once("user.php");
+require_once("view.php");
+
+if (isset($_POST["submit"])) {
+
+	$inputName = $_POST["UserName"];
+	$inputPsw = $_POST["Password"];	
+
+	$userObject = new User();
+	$userObject->login($inputName, $inputPsw);
+}
+
+
 
 ?>
+
 <html>
 	<head>
 	<meta charset="utf-8">
@@ -14,24 +27,12 @@ require_once("user.php");
 	<body>
  
 	<h1>Laborationskod fh222dt</h1>
-	<form method="post" action="index.php" class="form-inline">
-		<fieldset>
-			<legend>Login - Skriv in användarnamn och lösenord</legend>
+	
+	<?php
+	$html = new View();
+	echo $html->displayForm("");
+	echo $html->displayDate();
+	?>
 
-			<?php echo $helpText; ?>
-
-			<label for="UserName">Användarnamn</label>
-			<input id="UserName" name="UserName" type="text" size="15" 
-			value="<?php echo isset($_POST['UserName']) ? $_POST['UserName'] : '' ?>">		<!--value anv för att behålla inmatad text -->
-
-			<label for="Password">Lösenord</label>
-			<input id="Password" name="Password" type="password" size="15">
-
-			<label for="KeepLogin" class="checkbox"> 
-			<input id="KeepLogin" type="checkbox"> Håll mig inloggad</label>
-
-			<input type="submit" name="submit" value="Logga in" class="btn">
-		</fieldset>
-	</form>
 	</body>
 </html>
