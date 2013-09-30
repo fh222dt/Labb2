@@ -3,16 +3,14 @@ session_start();
 require_once("user.php");
 require_once("view.php");
 
+$userObject = new User();
+
 if (isset($_POST["submit"])) {
-
 	$inputName = $_POST["UserName"];
-	$inputPsw = $_POST["Password"];	
+	$inputPsw = $_POST["Password"];
 
-	$userObject = new User();
 	$userObject->login($inputName, $inputPsw);
 }
-
-
 
 ?>
 
@@ -29,8 +27,19 @@ if (isset($_POST["submit"])) {
 	<h1>Laborationskod fh222dt</h1>
 	
 	<?php
+
 	$html = new View();
-	echo $html->displayForm("");
+	$userObject->logout();
+
+	if (isset($_SESSION["login"])) {
+
+		$userObject->verifiedUser("Admin");
+	}
+
+	else {
+		echo $html->displayForm("");
+	}	
+	
 	echo $html->displayDate();
 	?>
 
