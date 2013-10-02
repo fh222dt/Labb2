@@ -16,26 +16,21 @@ class User {
 			$this->verifiedUser($inputName);
 
 			//ladda om sidan så scriptet körs igen
-			header("Location: $_SERVER[PHP_SELF]");
-			
+			header("Location: $_SERVER[PHP_SELF]");			
 		}
 
 		//felhantering av inmatad data från användaren
-		//TODO: fixa $helptext
 		else {		
 			if(empty($inputName) ) {
-				//$helpText= "<p>Användarnamn saknas</p><br/>";
-				echo "<p>Användarnamn saknas</p><br/>";
+				return $helpText= "Användarnamn saknas";
 			}
 
 			else if(empty($inputPsw) ) {
-				//$helpText= "<p>Lösenord saknas</p><br/>";
-				echo "<p>Lösenord saknas</p><br/>";
+				return $helpText= "Lösenord saknas";
 			}
 
 			else {
-				//$helpText= "<p>Felaktigt användarnamn och/eller lösenord</p><br/>";
-				echo "<p>Felaktigt användarnamn och/eller lösenord</p><br/>";
+				return $helpText= "Felaktigt användarnamn och/eller lösenord";
 			}
 		}
 	}
@@ -43,19 +38,16 @@ class User {
 	public function verifiedUser($inputName) {
 
 		if (isset($_SESSION["login"])) {
-
-			echo $_SESSION['login'];
-			
+						
 			echo "<h2> $inputName är inloggad</h2>";			
 			
 			$_SESSION["login"] = $_SESSION["login"]+1;
 
-			if ($_SESSION["login"] < 4) {
+			if ($_SESSION["login"] < 5) {
 				?>
 				<p>Inloggningen lyckades </br></p>
 				<?php
 			}
-
 		
 			?>
 			<a href="?logout">Logga ut</a>

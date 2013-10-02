@@ -3,15 +3,6 @@ session_start();
 require_once("user.php");
 require_once("view.php");
 
-$userObject = new User();
-
-if (isset($_POST["submit"])) {
-	$inputName = $_POST["UserName"];
-	$inputPsw = $_POST["Password"];
-
-	$userObject->login($inputName, $inputPsw);
-}
-
 ?>
 
 <html>
@@ -29,19 +20,39 @@ if (isset($_POST["submit"])) {
 	<?php
 
 	$html = new View();
+	$userObject = new User();
 	$userObject->logout();
+	$inputName ="";
+	$inputPsw ="";
+
+
+
+if (isset($_POST["submit"])) {
+	$inputName = $_POST["UserName"];
+	$inputPsw = $_POST["Password"];
+
+	$userObject->login($inputName, $inputPsw);
+
+}
+
 
 	if (isset($_SESSION["login"])) {
 
 		$userObject->verifiedUser("Admin");
 	}
 
-	else {
-		echo $html->displayForm("");
-	}	
+	/*else {
+		echo $html->displayForm($userObject->login($inputName, $inputPsw));
+	}*/
+
+
+
+else {
+		echo $html->displayForm($userObject->login($inputName, $inputPsw));
+	}
 	
-	echo $html->displayDate();
-	?>
+echo $html->displayDate();
+?>
 
 	</body>
 </html>

@@ -4,7 +4,7 @@ class View {
 	public function displayForm ($helpText) {
 		//<!--value anv för att behålla inmatad text -->
 		$value = isset($_POST['UserName']) ? $_POST['UserName'] : '';
-
+		//$helpText = ""; //retrurvärde fr login
 		return 
 		"<form method='post' action='index.php' class='form-inline'>
 		<fieldset>
