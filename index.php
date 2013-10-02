@@ -33,13 +33,17 @@ if (isset($_POST["submit"])) {
 
 	$userObject->login($inputName, $inputPsw);
 
+}	
+
+if (isset($_POST["KeepLogin"])) {
+
+	$userObject->verifiedStoredUser("trolle");
 }
 
+else if (isset($_SESSION["login"])) {
 
-	if (isset($_SESSION["login"])) {
-
-		$userObject->verifiedUser("Admin");
-	}
+	$userObject->verifiedUser("trolle");
+}
 
 	/*else {
 		echo $html->displayForm($userObject->login($inputName, $inputPsw));
@@ -52,6 +56,8 @@ else {
 	}
 	
 echo $html->displayDate();
+
+echo var_dump($_POST);
 ?>
 
 	</body>

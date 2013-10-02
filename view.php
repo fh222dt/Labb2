@@ -20,7 +20,8 @@ class View {
 			<input id='Password' name='Password' type='password' size='15'>
 
 			<label for='KeepLogin' class='checkbox'> 
-			<input id='KeepLogin' type='checkbox'> Håll mig inloggad</label>
+			<input id='KeepLogin' name='KeepLogin' 
+				type='checkbox'> Håll mig inloggad</label>
 
 			<input type='submit' name='submit' value='Logga in' class='btn'>
 		</fieldset>
