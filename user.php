@@ -30,7 +30,7 @@ class User {
 		}
 
 		//felhantering av inmatad data från användaren
-		else {		
+		else if (isset($_POST["submit"])) {		
 			if(empty($inputName) ) {
 				return $helpText= "Användarnamn saknas";
 			}
@@ -69,9 +69,13 @@ class User {
 		}
 	}
 
-	public function verifiedStoredUser ($inputName) {
+	public function verifiedStoredUser ($inputName, $inputPsw) {
 
 		if (isset($_SESSION["login"])) {
+			$hashedPsw = crypt($inputPsw); 
+
+			setcookie("username", $inputName, strtotime( '+10 min' ));
+			setcookie("password", $hashedPsw, strtotime( '+10 min' ));
 
 			echo "<h2> $inputName är inloggad</h2>";
 
@@ -99,6 +103,9 @@ class User {
 
 			else {
 				echo "<p>Du har nu loggat ut</p><br/>";
+
+				setcookie("username", "ended", strtotime( '-1 min' ));
+				setcookie("password", "ended", strtotime( '-1 min' ));
 				
 				unset($_SESSION["login"]);
 				session_destroy();
